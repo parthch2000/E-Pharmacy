@@ -1,0 +1,13 @@
+#rt2 {
+ -fx-background-color:  linear-gradient(lightgreen,DimGrey );
+  
+}
+.text{
+    -fx-font-size: 15px;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+.label{
+        -fx-font-weight: bold;
+
+}

@@ -1,0 +1,18 @@
+#bp{
+     -fx-background-color:  linear-gradient(DimGrey,lightgreen);
+}
+.text{
+    -fx-font-size: 15px;
+    -fx-text-fill: #333300;
+    
+}
+#l{
+    -fx-font-weight: bold 20px;
+    -fx-text-fill: lightgreen;
+}
+.button{
+    -fx-font-size: 18px bold;
+    -fx-text-fill: lightgreen;
+    -fx-border-radius: 300px;
+    -fx-background-color: DimGrey;
+}
