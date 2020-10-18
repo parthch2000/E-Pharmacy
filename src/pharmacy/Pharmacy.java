@@ -75,7 +75,7 @@ public class Pharmacy extends Application {
         
         rt2.setId("rt2");
         sc2.getStylesheets().add("pharmacy//login.css");
-        
+         
         
         log.setOnAction(e->{
             String unm=u2.getText();
