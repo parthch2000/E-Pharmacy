@@ -47,7 +47,11 @@ public class User extends Application {
                 Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        
+        b2.setOnAction(e->
+        {
+            buy b=new buy();
+            b.start(primaryStage);
+        });
         b3.setOnAction(e->{
         Pharmacy p=new Pharmacy();
         

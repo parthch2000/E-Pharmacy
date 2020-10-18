@@ -52,7 +52,7 @@ public class orders extends Application {
         Button find=new Button("Find");
 //        tf.setText(null);
         tbl.getColumns().addAll(id,name,mn,pr);
-        find.setOnAction(e->{
+        
 //        if(tf.getText()!=null){
             try
         {
@@ -81,26 +81,14 @@ public class orders extends Application {
             e1.printStackTrace();
         }   catch (ClassNotFoundException ex) {
                 Logger.getLogger(uorder.class.getName()).log(Level.SEVERE, null, ex);
-            }
-//        }
-
-//        else
-//        {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//                alert.setTitle("Error");
-//                alert.setHeaderText("EMPTY");
-//                String s ="No Data Found.";
-//                alert.setContentText(s);
-//                alert.show();
-//        }
-    }
-        );
+        }
+    
         
         HBox h1=new HBox(10);
         Button exit=new Button("Exit");
         exit.setOnAction(e->
         {
-            User a=new User();
+            admin a=new admin();
             a.start(st);
         }
         );

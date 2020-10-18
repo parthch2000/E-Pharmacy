@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -100,7 +99,7 @@ public class uorder extends Application {
         Button exit=new Button("Exit");
         exit.setOnAction(e->
         {
-            admin a=new admin();
+            User a=new User();
             a.start(st);
         }
         );
