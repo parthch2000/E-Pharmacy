@@ -5,10 +5,7 @@ import javafx.application.Application;
 import javafx.event.EventType;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -56,31 +53,55 @@ public class buy extends Application{
         Button up=new Button("Order");
         up.setOnAction(e->
         {
+            if(t1.getText().isEmpty()||t2.getText().isEmpty()||t3.getText().isEmpty()||t4.getText().isEmpty()||t5.getText().isEmpty()||t6.getText().isEmpty())
+            {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("Invalid Input");
+                String s ="Give correct data";
+                alert.setContentText(s);
+                alert.show();
+            }
             String mn=t1.getText();
             int amt=Integer.valueOf(t2.getText());
             String nm=t3.getText();
             String uid=t4.getText();
             String home=t5.getText();
             long no=Long.valueOf(t6.getText());
-
-//            else
-//            {
+            int t=0;
              try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/pharmacy",
                         "root", "");
                     Statement stm=conn.createStatement();
+                    String ch="Select * from medicines where name='"+mn+"'";
+                    ResultSet rs=stm.executeQuery(ch);
+                    if(rs.next())
+                        t=rs.getInt("stock");
                     String sql="Insert into orders(UID,BuyerName,Medicine,Amount,Address,Contact) values('"+uid+"','"+nm+"','"+mn+"',"+amt+",'"+home+"',"+no+")";
-                    stm.executeUpdate(sql);
-                    
-                    stm.close();
+                    if(t-amt>=0)
+                    {
+                        Statement stmm=conn.createStatement();
+                        stmm.executeUpdate(sql);
+                        System.out.println("Success");
+                        String d="update medicines set stock="+(t-amt)+" where name='"+mn+"'";
+                        stmm.executeUpdate(d);
+                    }
+                    else
+                    {
+                       Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("Stock is less");
+                String s ="Give correct data";
+                alert.setContentText(s);
+                alert.show(); 
+                    }
              }
              catch (SQLException ex) {
             ex.printStackTrace();
             } catch (ClassNotFoundException e1) {
                 e1.printStackTrace();
             }
-//            }
         });
         HBox h=new HBox(10);
         Button exit=new Button("Exit");
@@ -103,8 +124,4 @@ public class buy extends Application{
         st.setScene(sc);
         st.show();
     }
-//    public static void main(String args[])
-//    {
-//        launch(args);
-//    }
 }

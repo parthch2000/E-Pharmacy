@@ -73,7 +73,7 @@ public class admin extends Application {
         bp.setCenter(opt);
         bp.setBottom(logout);
         bp.setPadding(new Insets(5));
-        Scene sc3=new Scene(bp,300,200);
+        Scene sc3=new Scene(bp,400,250);
 
         bp.setId("bp");
         sc3.getStylesheets().add("pharmacy//admin.css");

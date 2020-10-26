@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -13,50 +12,38 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class orders extends Application {
     
-    private final TableView<UserOrders> tbl = new TableView<UserOrders>();
+    private final TableView<Orders> tbl = new TableView<Orders>();
     @Override
     public void start(Stage st) throws ClassNotFoundException
     {
         BorderPane root=new BorderPane();
         Scene sc=new Scene(root,500,500);
-//        tbl.setEditable(true);
-        TableColumn<UserOrders,String> id=new TableColumn("OrderID");
+        TableColumn<Orders,String> id=new TableColumn("OrderID");
         id.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
-        TableColumn <UserOrders,String>mn=new TableColumn("Medicine");
+        TableColumn <Orders,String>mn=new TableColumn("Medicine");
         mn.setCellValueFactory(new PropertyValueFactory("Medicine"));
-        TableColumn <UserOrders,String>pr=new TableColumn("Amount");
+        TableColumn <Orders,String>pr=new TableColumn("Amount");
         pr.setCellValueFactory(new PropertyValueFactory("Amount"));
-        TableColumn <UserOrders,String>name=new TableColumn("Name");
+        TableColumn <Orders,String>name=new TableColumn("Name");
         name.setCellValueFactory(new PropertyValueFactory("Name"));
         
-//        TextField tf=new TextField();
         VBox v=new VBox(10);
         Label l=new Label("ORDERS");
         l.setId("l");
-//        Label l2=new Label("Enter UserID here");
-//        HBox h=new HBox(10);
-//        h.getChildren().addAll(l2);
-//        h.setAlignment(Pos.BASELINE_CENTER);
         v.getChildren().addAll(l,tbl);
         v.setAlignment(Pos.CENTER);
         BorderPane.setAlignment(v, Pos.CENTER);
         root.setCenter(v);
-        ObservableList<UserOrders> data=FXCollections.observableArrayList();
-        Button find=new Button("Find");
-//        tf.setText(null);
+        ObservableList<Orders> data=FXCollections.observableArrayList();
         tbl.getColumns().addAll(id,name,mn,pr);
         
-//        if(tf.getText()!=null){
             try
         {
-//            String uid=tf.getText();
             Class.forName("com.mysql.cj.jdbc.Driver");
                     Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/pharmacy",
                         "root", "");
@@ -70,7 +57,7 @@ public class orders extends Application {
                         String Name=rs.getString("BuyerName");
                         String Medicine=rs.getString("Medicine");
                         int Amount=rs.getInt("Amount");
-                        data.add(new UserOrders(Id,Name,Medicine,Amount));
+                        data.add(new Orders(Id,Name,Medicine,Amount));
                     
                     }
                     tbl.setItems(data);
@@ -83,7 +70,6 @@ public class orders extends Application {
                 Logger.getLogger(uorder.class.getName()).log(Level.SEVERE, null, ex);
         }
     
-        
         HBox h1=new HBox(10);
         Button exit=new Button("Exit");
         exit.setOnAction(e->
@@ -92,7 +78,7 @@ public class orders extends Application {
             a.start(st);
         }
         );
-        h1.getChildren().addAll(find,exit);
+        h1.getChildren().add(exit);
         h1.setAlignment(Pos.CENTER);
         root.setBottom(h1);
         root.setId("bp");
@@ -103,7 +89,7 @@ public class orders extends Application {
     }
 
     
-    public static class UserOrders {
+    public static class Orders {
  
         SimpleIntegerProperty OrderID;
         SimpleStringProperty Medicine;
@@ -111,7 +97,7 @@ public class orders extends Application {
         SimpleStringProperty Name;
         
  
-        public UserOrders(Integer ID,String Name,String Medicine,int Amount) {
+        public Orders(Integer ID,String Name,String Medicine,int Amount) {
             this.OrderID = new SimpleIntegerProperty(ID);
             this.Medicine = new SimpleStringProperty(Medicine);
             this.Amount = new SimpleIntegerProperty(Amount);
@@ -150,8 +136,4 @@ public class orders extends Application {
         }
        
     }
-//    public static void main(String args[])
-//    {
-//        launch(args);
-//    }
 }

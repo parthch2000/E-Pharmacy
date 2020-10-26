@@ -25,7 +25,6 @@ public class uorder extends Application {
     {
         BorderPane root=new BorderPane();
         Scene sc=new Scene(root,500,500);
-//        tbl.setEditable(true);
         TableColumn<UserOrders,String> id=new TableColumn("OrderID");
         id.setCellValueFactory(new PropertyValueFactory<>("OrderID"));
         TableColumn <UserOrders,String>mn=new TableColumn("Medicine");
@@ -161,9 +160,5 @@ public class uorder extends Application {
         }
        
     }
-//    public static void main(String args[])
-//    {
-//        launch(args);
-//    }
 }
 

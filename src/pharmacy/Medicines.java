@@ -17,14 +17,13 @@ import javafx.stage.Stage;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class check extends Application{
+public class Medicines extends Application{
     private final TableView<Medicine> tbl = new TableView<Medicine>();
     @Override
     public void start(Stage st) throws ClassNotFoundException
     {
         BorderPane root=new BorderPane();
         Scene s=new Scene(root,500,500);
-//        tbl.setEditable(true);
         TableColumn<Medicine,String> id=new TableColumn("ID");
         id.setCellValueFactory(new PropertyValueFactory<>("ID"));
         TableColumn <Medicine,String>mn=new TableColumn("MName");
@@ -77,8 +76,8 @@ public class check extends Application{
         Button exit=new Button("Exit");
         exit.setOnAction(e->
         {
-            admin a=new admin();
-            a.start(st);
+            User u=new User();
+            u.start(st);
         }
         );
         h.getChildren().addAll(exit);
@@ -86,7 +85,7 @@ public class check extends Application{
         root.setBottom(h);
         root.setId("bp");
         s.getStylesheets().add("pharmacy//check.css");
-        st.setTitle("Check");
+        st.setTitle("Medicines");
         st.setScene(s);
         st.show();
     }

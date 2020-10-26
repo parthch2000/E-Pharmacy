@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pharmacy;
 
 import java.util.logging.Level;
@@ -20,10 +15,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-/**
- *
- * @author parth
- */
 public class User extends Application {
     
     @Override
@@ -34,7 +25,8 @@ public class User extends Application {
         
         Button b1=new Button("MyOrders");
         Button b2=new Button("Buy");
-        Button b3=new Button("Logout");
+        Button b3=new Button("Medicines");
+        Button b4=new Button("Logout");
         HBox opt=new HBox(10);
         opt.setAlignment(Pos.CENTER);
         
@@ -52,27 +44,35 @@ public class User extends Application {
             buy b=new buy();
             b.start(primaryStage);
         });
-        b3.setOnAction(e->{
-        Pharmacy p=new Pharmacy();
+        b3.setOnAction(e->
+        {
+            Medicines m=new Medicines();
+            try {
+                m.start(primaryStage);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         
+        b4.setOnAction(e->{
+        Pharmacy p=new Pharmacy();
         p.start(primaryStage);
         });
         
-        opt.getChildren().addAll(hd,b1,b2);
+        opt.getChildren().addAll(hd,b1,b2,b3);
         BorderPane.setAlignment(hd,Pos.TOP_CENTER);
         BorderPane.setAlignment(opt,Pos.CENTER);
-        BorderPane.setAlignment(b3,Pos.BOTTOM_CENTER);
+        BorderPane.setAlignment(b4,Pos.BOTTOM_CENTER);
         
         BorderPane bp=new BorderPane(hd);
         bp.setCenter(opt);
-        bp.setBottom(b3);
+        bp.setBottom(b4);
         bp.setPadding(new Insets(5));
-        Scene sc4=new Scene(bp,300,200);
+        Scene sc4=new Scene(bp,400,250);
         
         bp.setId("bp");
         sc4.getStylesheets().add("pharmacy//user.css");
         primaryStage.setTitle("User");
         primaryStage.setScene(sc4);
-        
         }
 }

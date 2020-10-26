@@ -48,14 +48,21 @@ public class add extends Application{
         Button up=new Button("Update");
         up.setOnAction(e->
         {
+            if(t1.getText().isEmpty()||t2.getText().isEmpty()||t3.getText().isEmpty()||t4.getText().isEmpty()||t5.getText().isEmpty())
+            {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("Invalid Input");
+                String s ="Give correct data";
+                alert.setContentText(s);
+                alert.show();
+            }
             String mn=t1.getText();
             int pr=Integer.valueOf(t2.getText());
             int stc=Integer.valueOf(t3.getText());
             String exp=t4.getText();
             String des=t5.getText();
             
-//            else
-//            {
              try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/pharmacy",
@@ -67,7 +74,7 @@ public class add extends Application{
                     stm.close();
              }
              catch (SQLException ex) {
-            ex.printStackTrace();
+                ex.printStackTrace();
             } catch (ClassNotFoundException e1) {
                 e1.printStackTrace();
             }

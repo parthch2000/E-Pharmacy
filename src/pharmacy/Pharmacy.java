@@ -24,12 +24,12 @@ public class Pharmacy extends Application {
         
         BorderPane rt2=new BorderPane();
         VBox root2 = new VBox(10);
-        Scene sc2 = new Scene(rt2,350,200);
+        Scene sc2 = new Scene(rt2,500,250);
         
         Text head =new Text("Welcome to Parth's Pharmacy..!!");
         Button sign =new Button("Click to SignIn");
         Button exit=new Button("Exit");
-        head.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
+        head.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 25));
         
         
         sign.setOnAction(e->primaryStage.setScene(sc2));
@@ -49,7 +49,7 @@ public class Pharmacy extends Application {
         
         root1.setPadding(new Insets(15));
         
-        Scene scene1 = new Scene(root1, 1000, 300);
+        Scene scene1 = new Scene(root1, 500, 300);
         root1.setId("root1");
         scene1.getStylesheets().add("pharmacy//index.css");
         
@@ -97,7 +97,6 @@ public class Pharmacy extends Application {
                     else if(r2.isSelected()==true && rs.next())
                     {
                         User b= new User();
-                        
                         b.start(primaryStage);
                     }
                     else
@@ -111,12 +110,10 @@ public class Pharmacy extends Application {
                 }
              }
              catch (SQLException ex) {
-            System.out.println("An error occurred. Maybe user/password is invalid");
             ex.printStackTrace();
             } catch (ClassNotFoundException e1) {
                 e1.printStackTrace();
             }
-           
             });
         
         root2.getChildren().addAll(uname,psw,us,log);
@@ -130,14 +127,6 @@ public class Pharmacy extends Application {
         primaryStage.setTitle("Pharmacy");
         primaryStage.setScene(scene1);
         primaryStage.show();
-        
-        
-        
-        
-        
-        
-        
-        
     }
     
     public static void main(String[] args) {
